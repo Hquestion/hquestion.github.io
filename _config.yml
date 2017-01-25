@@ -1,1 +1,26 @@
-baseurl: /hquestion.github.io
+# Site settings
+title: question的博客
+email: 1035271660@qq.com
+description: Um lindo tema feito para jekyll e com o <3
+baseurl: "/hquestion.github.io"
+url: "http://hquestion.github.io"
+
+author:
+  name     : 'He XiaoLei'
+  email    : 1035271660@qq.com
+  url      : http://hquestion.github.io
+
+github: https://github.com/hquestion
+disqus_shortname: "fernandomoreira"
+
+paginate: 2
+comments: true
+paginate_path: "/page/:num"
+
+sass:
+  style: :compressed
+  sass_dir: _sass
+
+# Build settings
+markdown  : kramdown
+permalink : /:title/
