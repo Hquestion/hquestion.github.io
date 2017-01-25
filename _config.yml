@@ -1,7 +1,7 @@
 # Site settings
 title: question的博客
 email: 1035271660@qq.com
-description: Um lindo tema feito para jekyll e com o <3
+description: 前端技术分享，总结
 baseurl: "/hquestion.github.io"
 url: "http://hquestion.github.io"
 
