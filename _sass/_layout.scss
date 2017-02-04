@@ -1,9 +1,13 @@
 
 //
 // container
+.main {
+  height: 100%;
+}
 .container {
   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
   max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+  min-height: calc(100% - 245px);
   margin-right: auto;
   margin-left: auto;
   padding-right: $spacing-unit;
