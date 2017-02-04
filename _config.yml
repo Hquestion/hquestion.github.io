@@ -13,7 +13,7 @@ author:
 github: https://github.com/hquestion
 disqus_shortname: "fernandomoreira"
 
-paginate: 2
+paginate: 10
 comments: true
 paginate_path: "/page/:num"
 
