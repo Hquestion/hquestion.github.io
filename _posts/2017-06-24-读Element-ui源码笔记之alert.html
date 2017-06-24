@@ -17,8 +17,9 @@ comments: false
     </div>
 </div>
 <p>
+    Alert组件相对比较简单，简单贴上代码添加几行注释。
     <code class="hljs javascript">
-<pre><span style="color: #008080;"> 1</span> const TYPE_CLASSES_MAP =<span style="color: #000000;"> {
+<pre><span style="color: #008080;"> 1</span> const TYPE_CLASSES_MAP =<span style="color: #000000;"> {&nbsp;&nbsp;&nbsp;&nbsp;//常见的代码优化手段，减少switch语句使用
 </span><span style="color: #008080;"> 2</span>                 'success': 'el-icon-circle-check'<span style="color: #000000;">,
 </span><span style="color: #008080;"> 3</span>                 'warning': 'el-icon-warning'<span style="color: #000000;">,
 </span><span style="color: #008080;"> 4</span>                 'error': 'el-icon-circle-cross'
@@ -75,7 +76,7 @@ comments: false
 <span style="color: #008080;">55</span> <span style="color: #000000;">                    iconClass() {
 </span><span style="color: #008080;">56</span>                         <span style="color: #0000ff;">return</span> TYPE_CLASSES_MAP[<span style="color: #0000ff;">this</span>.type] || 'el-icon-information'<span style="color: #000000;">;
 </span><span style="color: #008080;">57</span> <span style="color: #000000;">                    },
-</span><span style="color: #008080;">58</span>
+</span><span style="color: #008080;">58</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//开发和设计中经常忽略的点：图标与容器宽高的适配
 <span style="color: #008080;">59</span> <span style="color: #000000;">                    isBigIcon() {
 </span><span style="color: #008080;">60</span>                         <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.description ? 'is-big' : ''<span style="color: #000000;">;
 </span><span style="color: #008080;">61</span> <span style="color: #000000;">                    },
