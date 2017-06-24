@@ -18,72 +18,72 @@ comments: false
 </div>
 <p>
     <code class="hljs javascript">
-            const TYPE_CLASSES_MAP = {
-                'success': 'el-icon-circle-check',
-                'warning': 'el-icon-warning',
-                'error': 'el-icon-circle-cross'
-            };
-            export default {
-                name: 'ElAlert',
-
-                props: {
-                    title: {
-                        type: String,
-                        default: '',
-                        required: true
-                    },
-                    description: {
-                        type: String,
-                        default: ''
-                    },
-                    type: {
-                        type: String,
-                        default: 'info'
-                    },
-                    closable: {
-                        type: Boolean,
-                        default: true
-                    },
-                    closeText: {
-                        type: String,
-                        default: ''
-                    },
-                    showIcon: {
-                        type: Boolean,
-                        default: false
-                    }
-                },
-
-                data() {
-                    return {
-                        visible: true
-                    };
-                },
-
-                methods: {
-                    close() {
-                        this.visible = false;
-                        this.$emit('close');
-                    }
-                },
-
-                computed: {
-                    typeClass() {
-                        return `el-alert--${ this.type }`;
-                    },
-
-                    iconClass() {
-                        return TYPE_CLASSES_MAP[this.type] || 'el-icon-information';
-                    },
-
-                    isBigIcon() {
-                        return this.description ? 'is-big' : '';
-                    },
-
-                    isBoldTitle() {
-                        return this.description ? 'is-bold' : '';
-                    }
-                }
-            };
+<pre><span style="color: #008080;"> 1</span> const TYPE_CLASSES_MAP =<span style="color: #000000;"> {
+</span><span style="color: #008080;"> 2</span>                 'success': 'el-icon-circle-check'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 3</span>                 'warning': 'el-icon-warning'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 4</span>                 'error': 'el-icon-circle-cross'
+<span style="color: #008080;"> 5</span> <span style="color: #000000;">            };
+</span><span style="color: #008080;"> 6</span>             export <span style="color: #0000ff;">default</span><span style="color: #000000;"> {
+</span><span style="color: #008080;"> 7</span>                 name: 'ElAlert'<span style="color: #000000;">,
+</span><span style="color: #008080;"> 8</span>
+<span style="color: #008080;"> 9</span> <span style="color: #000000;">                props: {
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">                    title: {
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">                        type: String,
+</span><span style="color: #008080;">12</span>                         <span style="color: #0000ff;">default</span>: ''<span style="color: #000000;">,
+</span><span style="color: #008080;">13</span>                         required: <span style="color: #0000ff;">true</span>
+<span style="color: #008080;">14</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">15</span> <span style="color: #000000;">                    description: {
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">                        type: String,
+</span><span style="color: #008080;">17</span>                         <span style="color: #0000ff;">default</span>: ''
+<span style="color: #008080;">18</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">                    type: {
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">                        type: String,
+</span><span style="color: #008080;">21</span>                         <span style="color: #0000ff;">default</span>: 'info'
+<span style="color: #008080;">22</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">                    closable: {
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">                        type: Boolean,
+</span><span style="color: #008080;">25</span>                         <span style="color: #0000ff;">default</span>: <span style="color: #0000ff;">true</span>
+<span style="color: #008080;">26</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">                    closeText: {
+</span><span style="color: #008080;">28</span> <span style="color: #000000;">                        type: String,
+</span><span style="color: #008080;">29</span>                         <span style="color: #0000ff;">default</span>: ''
+<span style="color: #008080;">30</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">31</span> <span style="color: #000000;">                    showIcon: {
+</span><span style="color: #008080;">32</span> <span style="color: #000000;">                        type: Boolean,
+</span><span style="color: #008080;">33</span>                         <span style="color: #0000ff;">default</span>: <span style="color: #0000ff;">false</span>
+<span style="color: #008080;">34</span> <span style="color: #000000;">                    }
+</span><span style="color: #008080;">35</span> <span style="color: #000000;">                },
+</span><span style="color: #008080;">36</span>
+<span style="color: #008080;">37</span> <span style="color: #000000;">                data() {
+</span><span style="color: #008080;">38</span>                     <span style="color: #0000ff;">return</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">39</span>                         visible: <span style="color: #0000ff;">true</span>
+<span style="color: #008080;">40</span> <span style="color: #000000;">                    };
+</span><span style="color: #008080;">41</span> <span style="color: #000000;">                },
+</span><span style="color: #008080;">42</span>
+<span style="color: #008080;">43</span> <span style="color: #000000;">                methods: {
+</span><span style="color: #008080;">44</span> <span style="color: #000000;">                    close() {
+</span><span style="color: #008080;">45</span>                         <span style="color: #0000ff;">this</span>.visible = <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;">46</span>                         <span style="color: #0000ff;">this</span>.$emit('close'<span style="color: #000000;">);
+</span><span style="color: #008080;">47</span> <span style="color: #000000;">                    }
+</span><span style="color: #008080;">48</span> <span style="color: #000000;">                },
+</span><span style="color: #008080;">49</span>
+<span style="color: #008080;">50</span> <span style="color: #000000;">                computed: {
+</span><span style="color: #008080;">51</span> <span style="color: #000000;">                    typeClass() {
+</span><span style="color: #008080;">52</span>                         <span style="color: #0000ff;">return</span> `el-alert--${ <span style="color: #0000ff;">this</span><span style="color: #000000;">.type }`;
+</span><span style="color: #008080;">53</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">54</span>
+<span style="color: #008080;">55</span> <span style="color: #000000;">                    iconClass() {
+</span><span style="color: #008080;">56</span>                         <span style="color: #0000ff;">return</span> TYPE_CLASSES_MAP[<span style="color: #0000ff;">this</span>.type] || 'el-icon-information'<span style="color: #000000;">;
+</span><span style="color: #008080;">57</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">58</span>
+<span style="color: #008080;">59</span> <span style="color: #000000;">                    isBigIcon() {
+</span><span style="color: #008080;">60</span>                         <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.description ? 'is-big' : ''<span style="color: #000000;">;
+</span><span style="color: #008080;">61</span> <span style="color: #000000;">                    },
+</span><span style="color: #008080;">62</span>
+<span style="color: #008080;">63</span> <span style="color: #000000;">                    isBoldTitle() {
+</span><span style="color: #008080;">64</span>                         <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.description ? 'is-bold' : ''<span style="color: #000000;">;
+</span><span style="color: #008080;">65</span> <span style="color: #000000;">                    }
+</span><span style="color: #008080;">66</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">67</span>             };</pre>
     </code>
 </p>
