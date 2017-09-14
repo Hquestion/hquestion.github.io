@@ -15,9 +15,20 @@
 <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+<link rel="stylesheet" href="{{"/js-lib/highlight/styles/default.css" | prepend: site.baseurl }}">
+<script type="text/javascript" src="{{"/js-lib/highlight/highlight-pack.js" | prepend: site.baseurl }}"></script>
 
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', '{{ site.google_analytics }}']);
 _gaq.push(['_trackPageview']);
+window.onload=function(){
+//	$('pre code').each(function(i, block) {
+//		hljs.highlightBlock(block);
+//	});
+	var $codeArea = document.querySelectorAll('pre code');
+	for(var item in $codeArea) {
+		hljs.highlightBlock($codeArea[item]);
+    }
+}
 </script>
