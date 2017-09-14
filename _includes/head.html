@@ -22,13 +22,5 @@
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', '{{ site.google_analytics }}']);
 _gaq.push(['_trackPageview']);
-window.onload=function(){
-//	$('pre code').each(function(i, block) {
-//		hljs.highlightBlock(block);
-//	});
-	var $codeArea = document.querySelectorAll('pre code');
-	for(var item in $codeArea) {
-		hljs.highlightBlock($codeArea[item]);
-    }
-}
+hljs.initHighlightingOnLoad();
 </script>
