@@ -1,0 +1,28 @@
+---
+layout: post
+title: 资源收藏夹
+comments: false
+---
+<pre>
+    <body onload="init()" onunload="Stop()" >
+    <div style="width:100%;height:100%;background-color:#000;">
+        <script language="javascript" type="text/javascript">
+            var Netocx;
+            function Play() {
+                var i;
+                var szURL = "rtsp://192.168.1.82:554/PSIA/streaming/channels/101";
+                var UserID = Netocx.HWP_Play(szURL, "admin:12345678", 0, "", "");//Base64编码
+            }
+            function Stop() {
+                var Netocx = document.getElementById("PreviewActiveX");
+                Netocx.HWP_Stop(0);//0是通道号
+            }
+            function init() {
+                Netocx = document.getElementById("PreviewActiveX");
+                setTimeout(Play, 100);
+                //Play();
+            }
+        </script>
+        <embed type='application/hwp-webvideo-plugin' id='PreviewActiveX' width='100%' height='100%' name='PreviewActiveX' align='center' wndtype='1' playmode='0'></embed>
+    </div>
+</pre>
