@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="guagga/quagga.min.js"></script>
+</head>
+<body>
+    <div id="video"></div>
+<script>
+        Quagga.init({
+        inputStream : {
+            name : "Live",
+            type : "LiveStream",
+            target: document.querySelector('#video')    // Or '#yourElement' (optional)
+        },
+        decoder : {
+            readers : ["code_128_reader",
+                "ean_reader",
+                "ean_8_reader",
+                "code_39_reader",
+                "code_39_vin_reader",
+                "codabar_reader",
+                "upc_reader",
+                "upc_e_reader",
+                "i2of5_reader",
+                "2of5_reader",
+                "code_93_reader"
+            ]
+        }
+    }, function(err) {
+        if (err) {
+            alert(err.name);
+            console.log(err);
+            return
+        }
+        alert("Initialization finished. Ready to start");
+        Quagga.start();
+    });
+    Quagga.onProcessed(function(data){
+        console.log(data);
+        document.write(JSON.stringify(data))
+    });
+    Quagga.onDetected(function(data){
+        document.write(JSON.stringify(data))
+    })
+</script>
+</body>
+</html>
