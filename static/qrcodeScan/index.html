@@ -9,8 +9,11 @@
     <div id="video" style="width: 600px;height:480px;"></div>
     <div id="result"></div>
 <script>
-    var devices = navigator.mediaDevices.enumerateDevices();
-    alert(devices);
+    navigator.mediaDevices.enumerateDevices().then(function(devices){
+        devices.forEach(function(device){
+            alert(device.deviceId);
+        })
+    });
     var $result = document.querySelector('#result');
         Quagga.init({
         inputStream : {
