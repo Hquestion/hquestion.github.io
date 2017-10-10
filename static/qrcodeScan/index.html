@@ -11,7 +11,8 @@
 <script>
     navigator.mediaDevices.enumerateDevices().then(function(devices){
         devices.forEach(function(device){
-            alert(device.deviceId);
+            alert(device.kind + ": " + device.label +
+                " id = " + device.deviceId);
         })
     });
     var $result = document.querySelector('#result');
