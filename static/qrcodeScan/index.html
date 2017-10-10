@@ -9,48 +9,53 @@
     <div id="video" style="width: 600px;height:480px;"></div>
     <div id="result"></div>
 <script>
+    var $result = document.querySelector('#result');
     navigator.mediaDevices.enumerateDevices().then(function(devices){
         devices.forEach(function(device){
             alert(device.kind + ": " + device.label +
                 " id = " + device.deviceId);
-        })
-    });
-    var $result = document.querySelector('#result');
+        });
+        var device = devices.find(function (item) {
+            return item.kind === 'videoinput' && item.label.indexOf('back') >= 0;
+        });
         Quagga.init({
-        inputStream : {
-            name : "Live",
-            type : "LiveStream",
-            target: document.querySelector('#video'),    // Or '#yourElement' (optional)
-            constraints: {
-                width: {min: 640},
-                height: {min: 480},
-                facingMode: "environment",
-                aspectRatio: {min: 1, max: 2}
+            inputStream : {
+                name : "Live",
+                type : "LiveStream",
+                target: document.querySelector('#video'),    // Or '#yourElement' (optional)
+                constraints: {
+                    width: {min: 640},
+                    height: {min: 480},
+                    facingMode: "environment",
+                    aspectRatio: {min: 1, max: 2},
+                    deviceId: device.deviceId
+                }
+            },
+            decoder : {
+                readers : ["code_128_reader",
+                    "ean_reader",
+                    "ean_8_reader",
+                    "code_39_reader",
+                    "code_39_vin_reader",
+                    "codabar_reader",
+                    "upc_reader",
+                    "upc_e_reader",
+                    "i2of5_reader",
+                    "2of5_reader",
+                    "code_93_reader"
+                ]
             }
-        },
-        decoder : {
-            readers : ["code_128_reader",
-                "ean_reader",
-                "ean_8_reader",
-                "code_39_reader",
-                "code_39_vin_reader",
-                "codabar_reader",
-                "upc_reader",
-                "upc_e_reader",
-                "i2of5_reader",
-                "2of5_reader",
-                "code_93_reader"
-            ]
-        }
-    }, function(err) {
-        if (err) {
-            alert(err.name);
-            console.log(err);
-            return
-        }
-        alert("Initialization finished. Ready to start");
-        Quagga.start();
+        }, function(err) {
+            if (err) {
+                alert(err.name);
+                console.log(err);
+                return
+            }
+            alert("Initialization finished. Ready to start");
+            Quagga.start();
+        });
     });
+
     Quagga.onProcessed(function(data){
         if(data) {
             $result.text(JSON.stringify(data))
