@@ -51,7 +51,9 @@
         }
     });
     Quagga.onDetected(function(data){
-        $result.text(JSON.stringify(data))
+        if(data) {
+            $result.text(JSON.stringify(data))
+        }
     })
 </script>
 </body>
