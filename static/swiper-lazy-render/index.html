@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>swiper lazy render</title>
+    <link rel="stylesheet" href="swiper.css">
+    <script src="vue.js"></script>
+    <script src="swiper.js"></script>
+    <script src="vue-awesome-swiper.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            width: 80%;
+            height: 100vh;
+            margin: 0 auto;
+            background: #dedede;
+        }
+        .swiper-container {
+            width: 80%;
+            height: 100%;
+            margin: 0 auto;
+            background: #fff;
+        }
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding: 20% 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <swiper :options="swiperOpt" v-lazy-render="originData" renderData="toRenderData">
+            <swiper-slide v-for="(item, index) in toRenderData" :key="index">
+                <div>{{ item.name }}</div>
+            </swiper-slide>
+            <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div>
+        </swiper>
+    </div>
+<script>
+    var ctx = '@@lazyRender';
+    var SWIPER_SLIDE_SIZE = 3;   //奇数个
+    var MIDDLE_INDEX = Math.floor(SWIPER_SLIDE_SIZE / 2);
+
+    Vue.use(VueAwesomeSwiper);
+    var vm = new Vue({
+        el: '#app',
+        data(){
+            return {
+                msg: 11,
+                originData: [],
+                toRenderData: [],
+                swiperOpt: {
+                    autoPlay: false,
+                    prevButton: '.swiper-button-prev',
+                    nextButton: '.swiper-button-next'
+                }
+            }
+        },
+        mounted(){
+            for(var i = 0; i < 1000; i++) {
+                this.originData.push({
+                    name: `我是swiper列表第${ i }项`,
+                    id: i
+                });
+            }
+        },
+        directives: {
+            lazyRender: {
+                update: function(el, binding, vNode){
+                    if (!el[ctx] || !el[ctx].isBound) {
+                        if (el.swiper) {
+                            el[ctx] = {};
+                            el[ctx].isBound = true;
+                            var vm = vNode.context;
+                            var expression = binding.value;
+                            var renderData = el.getAttribute('renderData');
+                            var startIndex = 0;
+                            var total = expression.length;
+                            //初始化赋值
+                            vm[renderData] = expression.slice(0, SWIPER_SLIDE_SIZE);
+                            el.swiper.on('slideChangeEnd', function (swiper) {
+                                swiper.lockSwipes();
+                                let activeIndex = swiper.activeIndex;
+                                startIndex += activeIndex;
+                                let shouldActiveIndex;
+                                if(startIndex < MIDDLE_INDEX) {
+                                    vm[renderData] = expression.slice(0, SWIPER_SLIDE_SIZE);
+                                    shouldActiveIndex = activeIndex;
+                                    startIndex = 0;
+                                }else if(startIndex > total -  MIDDLE_INDEX){
+                                    vm[renderData] = expression.slice(total + 1 - SWIPER_SLIDE_SIZE, total + 1);
+                                    shouldActiveIndex = activeIndex;
+                                    startIndex = total - SWIPER_SLIDE_SIZE;
+                                }else {
+                                    startIndex = startIndex - MIDDLE_INDEX;
+                                    vm[renderData] = expression.slice(startIndex, startIndex + SWIPER_SLIDE_SIZE);
+                                    shouldActiveIndex = MIDDLE_INDEX;
+                                }
+                                swiper.unlockSwipes();
+                                swiper.activeIndex = shouldActiveIndex;
+                                swiper.updateSlidesSize();
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
