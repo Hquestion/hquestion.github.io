@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 学习NativeScript基础
+title: 【翻译】nativescript入门教程 第一章--学习NativeScript基础
 comments: false
 ---
 ## 第一章---学习NativeScript基础
