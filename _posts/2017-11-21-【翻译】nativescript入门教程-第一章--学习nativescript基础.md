@@ -22,7 +22,9 @@ NativeScript CLI使用预定义的模板“nativescript-template-tutorial”来�
 只是为了教授NativeScript基础而创建的一个非常简单的应用模板。<br>
 
 > *create*将花费一点时间，因为NativeScript CLI在初始化你的应用时，会安装一些依赖。
+
 > 命令结束时，使用*cd*命令进入你新建App的文件件。<br>
+
 > `cd HelloWorld`
 
 现在你已经创建了一个App，我们来看看怎么让你的应用跑起来，并且在模拟器上运行。
