@@ -1,3 +1,8 @@
+---
+layout: post
+title: 学习NativeScript基础
+comments: false
+---
 ## 第一章---学习NativeScript基础
 本章你将从基础开始，包括新建App,在模拟器上运行这些App,和建立一个
 开发流，允许你快速开发App。
