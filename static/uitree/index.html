@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="tree-container">
+
+    </div>
+<script src="treeData.js"></script>
+<script src="Leaf.js"></script>
+<script src="UITree.js"></script>
+<script>
+    var tree = new UITree(treeData);
+    tree.render(document.querySelector('#tree-container'));
+</script>
+</body>
+</html>
