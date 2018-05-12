@@ -59,6 +59,6 @@ comments: false
 ```
 如上面代码，如果在script头部引入图片
 ```javascript
-const avatar  require('..assets\image\...')
+const avatar = require('..assets\image\...')
 ```
 则在build之后，avatar再在其他地方引用avatar变量时，指向了当前的BgAvatar实例。不得已，改成了上面开始的写法。
